@@ -13,5 +13,8 @@
     "mnist-data": "^1.2.6",
     "node-remote-plot": "^1.2.0",
     "shuffle-seed": "^1.1.6"
+  },
+  "devDependencies": {
+    "prettier": "2.8.4"
   }
 }
