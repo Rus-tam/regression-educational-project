@@ -2,7 +2,7 @@ const tf = require("@tensorflow/tfjs-node");
 const loadCSV = require("./load-csv");
 const LinearRegression = require("./linear-regression");
 
-let { features, labels, testFeatures, tesLabels } = loadCSV("./cars.csv", {
+let { features, labels, testFeatures, testLabels } = loadCSV("./cars.csv", {
   shuffle: true,
   splitTest: 50,
   dataColumns: ["horsepower"],
@@ -10,15 +10,12 @@ let { features, labels, testFeatures, tesLabels } = loadCSV("./cars.csv", {
 });
 
 const regression = new LinearRegression(features, labels, {
-  learningRate: 0.0001,
+  learningRate: 0.00005,
   iterations: 100,
 });
 
 regression.train();
 
-console.log(
-  "Updated M is: ",
-  regression.weights.arraySync()[1],
-  "Updated B is: ",
-  regression.weights.arraySync()[0]
-);
+const R2 = regression.test(testFeatures, testLabels);
+
+console.log(`R2 is ${R2}`);
